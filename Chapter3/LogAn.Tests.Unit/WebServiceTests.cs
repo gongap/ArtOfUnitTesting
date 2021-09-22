@@ -5,8 +5,20 @@ using NUnit.Framework;
 namespace LogAn.Tests.Unit
 {
     [TestFixture]
-    public class LogAnalyzerTests
+    public class WebServiceTests
     {
+        [Test]
+        public void Analyze_TooShortFileName_CallsWebService()
+        {
+            FakeWebService mockService = new FakeWebService();
+            LogAnalyzer log = new LogAnalyzer(mockService, null);
+
+            string tooShortFileName = "abc.ext";
+            log.Analyze(tooShortFileName);
+            // 使用模拟对象进行断言
+            StringAssert.Contains("Filename too short : abc.ext", mockService.LastError);
+        }
+
         [Test]
         public void Analyze_WebServiceThrows_SendsEmail()
         {
