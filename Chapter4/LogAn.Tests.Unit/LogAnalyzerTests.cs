@@ -1,3 +1,4 @@
+using LogAn.Tests.Unit.Fakes;
 using NSubstitute;
 using NUnit.Framework;
 using System;
@@ -27,6 +28,7 @@ namespace LogAn.Tests.Unit
         public void Returns_ByDefault_WorksForHardCodeArgument()
         {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
+
             // 强制方法返回假值
             fakeRules.IsValidLogFileName("strict.txt").Returns(true);
 
@@ -63,6 +65,7 @@ namespace LogAn.Tests.Unit
         {
             var mockWebService = Substitute.For<IWebService>();
             var stubLogger = Substitute.For<ILogger>();
+
             // 无论输入什么都抛出异常
             stubLogger.When(logger => logger.LogError(Arg.Any<string>()))
                 .Do(info => { throw new Exception("fake exception"); });
@@ -70,6 +73,7 @@ namespace LogAn.Tests.Unit
             var analyzer = new LogAnalyzerNew(stubLogger, mockWebService);
             analyzer.MinNameLength = 10;
             analyzer.Analyze("short.txt");
+
             //验证在测试中调用了Web Service的模拟对象，调用参数字符串包含 "fake exception"
             mockWebService.Received().Write(Arg.Is<string>(s => s.Contains("fake exception")));
         }

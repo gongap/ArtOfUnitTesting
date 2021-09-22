@@ -17,7 +17,7 @@
         {
             if (fileName.Length < MinNameLength)
             {
-                log.LogError(string.Format("Filename  too short : {0}", fileName));
+                log.LogError(string.Format("Filename too short : {0}", fileName));
             }
         }
     }
