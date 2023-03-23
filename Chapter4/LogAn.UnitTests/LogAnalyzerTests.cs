@@ -1,9 +1,8 @@
-using LogAn.Tests.Unit.Fakes;
+using System;
 using NSubstitute;
 using NUnit.Framework;
-using System;
 
-namespace LogAn.Tests.Unit
+namespace LogAn.UnitTests
 {
     //NSub∏Ù¿ÎøÚº‹ π”√
     [TestFixture]

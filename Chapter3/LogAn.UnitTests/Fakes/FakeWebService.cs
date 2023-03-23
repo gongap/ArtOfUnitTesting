@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogAn.Tests.Unit.Fakes
+namespace LogAn.UnitTests.Fakes
 {
     public class FakeWebService : IWebService
     {

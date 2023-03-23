@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogAn.Tests.Unit.Fakes
+namespace LogAn.UnitTests.Fakes
 {
     // 定义一个最简单的存根
     internal class FakeExtensionManager : IExtensionManager

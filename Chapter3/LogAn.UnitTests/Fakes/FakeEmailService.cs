@@ -1,4 +1,4 @@
-﻿namespace LogAn.Tests.Unit.Fakes
+﻿namespace LogAn.UnitTests.Fakes
 {
     public class FakeEmailService : IEmailService
     {

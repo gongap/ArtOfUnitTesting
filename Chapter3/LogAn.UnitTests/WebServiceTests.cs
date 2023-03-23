@@ -1,8 +1,8 @@
 ﻿using System;
-using LogAn.Tests.Unit.Fakes;
+using LogAn.UnitTests.Fakes;
 using NUnit.Framework;
 
-namespace LogAn.Tests.Unit
+namespace LogAn.UnitTests
 {
     [TestFixture]
     public class WebServiceTests
