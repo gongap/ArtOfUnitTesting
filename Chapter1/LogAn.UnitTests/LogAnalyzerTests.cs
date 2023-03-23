@@ -1,7 +1,7 @@
 using System;
 using NUnit.Framework;
 
-namespace LogAn.Tests.Unit
+namespace LogAn.UnitTests
 {
     [TestFixture]
     public class LogAnalyzerTests
