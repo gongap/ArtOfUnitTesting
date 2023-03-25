@@ -1,14 +1,13 @@
 using System;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace LogAn.UnitTests
 {
     //NSub隔离框架使用
-    [TestFixture]
     public partial class LogAnalyzerTests
     {
-        [Test]
+       [Fact]
         public void Analyze_TooShortFileName_CallLogger()
         {
             // 创建模拟对象，用于测试结尾的断言
@@ -23,7 +22,7 @@ namespace LogAn.UnitTests
         }
 
         // 模拟一个返回值
-        [Test]
+       [Fact]
         public void Returns_ByDefault_WorksForHardCodeArgument()
         {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
@@ -31,11 +30,11 @@ namespace LogAn.UnitTests
             // 强制方法返回假值
             fakeRules.IsValidLogFileName("strict.txt").Returns(true);
 
-            Assert.IsTrue(fakeRules.IsValidLogFileName("strict.txt"));
+            Assert.True(fakeRules.IsValidLogFileName("strict.txt"));
         }
 
         // 使用参数匹配器
-        [Test]
+       [Fact]
         public void Returns_ByDefault_WorksForAnyArgument()
         {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
@@ -43,11 +42,11 @@ namespace LogAn.UnitTests
             // 强制方法返回假值
             fakeRules.IsValidLogFileName(Arg.Any<string>()).Returns(true);
 
-            Assert.IsTrue(fakeRules.IsValidLogFileName("anything.txt"));
+            Assert.True(fakeRules.IsValidLogFileName("anything.txt"));
         }
 
         // 模拟一个异常
-        [Test]
+       [Fact]
         public void Returns_ArgAny_Throws()
         {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
@@ -59,7 +58,7 @@ namespace LogAn.UnitTests
         }
 
         // 同时使用模拟对象和存根
-        [Test]
+       [Fact]
         public void Analyze_LoggerThrows_CallsWebService()
         {
             var mockWebService = Substitute.For<IWebService>();

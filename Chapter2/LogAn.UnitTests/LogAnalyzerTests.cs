@@ -1,13 +1,12 @@
 using LogAn.UnitTests.Fakes;
-using NUnit.Framework;
+using Xunit;
 
 namespace LogAn.UnitTests
 {
-    [TestFixture]
     public partial class LogAnalyzerTests
     {
         #region 构造函数注入
-        [Test]
+       [Fact]
         public void IsValidFileName_NameSupportExtension_ReturnsTrue()
         {
             // 准备一个返回true的存根
@@ -17,13 +16,13 @@ namespace LogAn.UnitTests
             LogAnalyzer analyzer = new LogAnalyzer(myFakeManager);
             bool result = analyzer.IsValidLogFileName("shortname.ext");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
         #endregion
 
         #region 属性注入
-        [Test]
+       [Fact]
         public void IsValidFileName_SupportExtension_ReturnsTrue()
         {
             // 设置要使用的存根，确保其返回true
@@ -34,7 +33,7 @@ namespace LogAn.UnitTests
             log.ExtensionManager = myFakeManager;
             bool result = log.IsValidLogFileName("testfilename.ext");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
         #endregion
@@ -43,7 +42,7 @@ namespace LogAn.UnitTests
         /// <summary>
         /// 在测试运行时设置工厂类返回一个存根
         /// </summary>
-        [Test]
+       [Fact]
         public void IsValidFileName_SupportedExtension_ReturnsTrue()
         {
             // 设置要使用的存根，确保其返回true
@@ -55,10 +54,10 @@ namespace LogAn.UnitTests
             LogAnalyzer log = new LogAnalyzer();
             bool result = log.IsValidLogFileName("testfilename.ext");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
-        [Test]
+       [Fact]
         public void OverrideTest()
         {
             FakeExtensionManager stub = new FakeExtensionManager();
@@ -67,7 +66,7 @@ namespace LogAn.UnitTests
             TestableLogAnalyzer logan = new TestableLogAnalyzer(stub);
             bool result = logan.IsValidLogFileName("stubfile.ext");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
         #endregion
     }

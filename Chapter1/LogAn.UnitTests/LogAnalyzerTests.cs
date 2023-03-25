@@ -1,12 +1,11 @@
 using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace LogAn.UnitTests
 {
-    [TestFixture]
     public class LogAnalyzerTests
     {
-        [Test]
+        [Fact]
         public void IsValidLogFileName_BadExtension_ReturnsFalse()
         {
             LogAnalyzer analyzer = MakeAnalyzer();
@@ -16,60 +15,61 @@ namespace LogAn.UnitTests
             Assert.False(result);
         }
 
-        [Test]
+        [Fact]
         public void IsValidFileName_GoodExtensionLowercase_ReturnsTrue()
         {
             LogAnalyzer analyzer = new LogAnalyzer();
 
             bool result = analyzer.IsValidLogFileName("filewithgoodextension.slf");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
-        [Test]
+        [Fact]
         public void IsValidFileName_GoodExtensionUppercase_ReturnsTrue()
         {
             LogAnalyzer analyzer = new LogAnalyzer();
 
             bool result = analyzer.IsValidLogFileName("filewithgoodextension.SLF");
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
-        [TestCase("filewithgoodextension.slf")]
-        [TestCase("filewithgoodextension.SLF")]
+        [Theory]
+        [InlineData("filewithgoodextension.slf")]
+        [InlineData("filewithgoodextension.SLF")]
         public void IsValidFileName_ValidExtensions_ReturnsTrue(string fileName)
         {
             LogAnalyzer analyzer = new LogAnalyzer();
 
             bool result = analyzer.IsValidLogFileName(fileName);
 
-            Assert.AreEqual(true, result);
+            Assert.Equal(true, result);
         }
 
-        [Test]
+        [Fact]
         public void IsValidFileName_EmptyName_Throws()
         {
             LogAnalyzer analyzer = new LogAnalyzer();
 
-            var ex = Assert.Catch<Exception>(() => analyzer.IsValidLogFileName(string.Empty));
+            var ex = Assert.Throws<ArgumentException>(() => analyzer.IsValidLogFileName(string.Empty));
 
-            StringAssert.Contains("filename has to be provided", ex.Message);
+            Assert.Contains("filename has to be provided", ex.Message);
         }
 
-        [TestCase("badfile.foo", false)]
-        [TestCase("goodfile.slf", true)]
+        [Theory]
+        [InlineData("badfile.foo", false)]
+        [InlineData("goodfile.slf", true)]
         public void IsValidFileName_WhenCalled_ChangesWasLastFileNameValid(string fileName, bool expected)
         {
             LogAnalyzer analyzer = new LogAnalyzer();
 
             analyzer.IsValidLogFileName(fileName);
 
-            Assert.AreEqual(expected, analyzer.WasLastFileNameValid);
+            Assert.Equal(expected, analyzer.WasLastFileNameValid);
         }
 
-        [Test]
-        [Ignore("there is a problem with this test!")]
+        [Fact(Skip = "there is a problem with this test!")]
         public void IsValidFileName_ValidFile_ReturnsTrue()
         {
             LogAnalyzer analyzer = MakeAnalyzer();
