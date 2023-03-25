@@ -1,9 +1,8 @@
 ﻿using System;
-using LogAn.UnitTests.Fakes;
+using LogAn.Tests.Fakes;
 using Xunit;
 
-
-namespace LogAn.UnitTests
+namespace LogAn.Tests
 {
     
     public class WebServiceTests

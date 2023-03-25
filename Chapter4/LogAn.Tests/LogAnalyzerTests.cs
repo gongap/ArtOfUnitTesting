@@ -2,7 +2,7 @@ using System;
 using NSubstitute;
 using Xunit;
 
-namespace LogAn.UnitTests
+namespace LogAn.Tests
 {
     //NSub∏Ù¿ÎøÚº‹ π”√
     public partial class LogAnalyzerTests

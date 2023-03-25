@@ -1,4 +1,4 @@
-﻿namespace LogAn.UnitTests.Fakes
+﻿namespace LogAn.Tests.Fakes
 {
     public class TestableLogAnalyzer : LogAnalyzerUsingFactoryMethod
     {

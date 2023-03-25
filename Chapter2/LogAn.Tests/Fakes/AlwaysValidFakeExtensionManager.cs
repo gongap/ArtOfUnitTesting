@@ -1,4 +1,4 @@
-﻿namespace LogAn.UnitTests.Fakes
+﻿namespace LogAn.Tests.Fakes
 {
     ///<summary>
     /// 始终有效的扩展管理器存根
