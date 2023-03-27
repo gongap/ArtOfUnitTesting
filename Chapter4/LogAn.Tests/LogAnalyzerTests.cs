@@ -4,10 +4,9 @@ using Xunit;
 
 namespace LogAn.Tests
 {
-    //NSub隔离框架使用
     public partial class LogAnalyzerTests
     {
-       [Fact]
+        [Fact]
         public void Analyze_TooShortFileName_CallLogger()
         {
             // 创建模拟对象，用于测试结尾的断言
@@ -22,7 +21,7 @@ namespace LogAn.Tests
         }
 
         // 模拟一个返回值
-       [Fact]
+        [Fact]
         public void Returns_ByDefault_WorksForHardCodeArgument()
         {
             IFileNameRules fakeRules = Substitute.For<IFileNameRules>();
@@ -75,5 +74,18 @@ namespace LogAn.Tests
             //验证在测试中调用了Web Service的模拟对象，调用参数字符串包含 "fake exception"
             mockWebService.Received().Write(Arg.Is<string>(s => s.Contains("fake exception")));
         }
+
+        //// 手写的伪对象FakeLogger
+        //[Fact]
+        //public void Analyze_TooShortFileName_CallLogger()
+        //{
+        //    var logger = new FakeLogger();
+        //    LogAnalyzer analyzer = new LogAnalyzer(logger);
+        //    analyzer.MinNameLength = 6;
+
+        //    analyzer.Analyze("a.txt");
+
+        //    Assert.Contains("too short", logger.LastError);
+        //}
     }
 }
